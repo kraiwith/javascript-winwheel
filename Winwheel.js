@@ -33,6 +33,7 @@ function Winwheel(options, drawWheel)
 {
     defaultOptions = {
         'canvasId'          : 'canvas',     // Id of the canvas which the wheel is to draw on to.
+        'canvasElement'     : null,         // Element of the canvas which to draw on.
         'centerX'           : null,         // X position of the center of the wheel. The default of these are null which means will be placed in center of the canvas.
         'centerY'           : null,         // Y position of the wheel center. If left null at time of construct the center of the canvas is used.
         'outerRadius'       : null,         // The radius of the outside of the wheel. If left null it will be set to the radius from the center of the canvas to its shortest side.
@@ -86,8 +87,8 @@ function Winwheel(options, drawWheel)
 
     // ------------------------------------------
     // If the id of the canvas is set, try to get the canvas as we need it for drawing.
-    if (this.canvasId) {
-        this.canvas = document.getElementById(this.canvasId);
+    if (this.canvasId || this.canvasElement) {
+        this.canvas = document.getElementById(this.canvasId) || this.canvasElement;
 
         if (this.canvas) {
             // If the centerX and centerY have not been specified in the options then default to center of the canvas
